@@ -34,6 +34,14 @@ public class OneFebruary {
         return true;
     }
 
+    public static String reverseString(String s) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = s.length() - 1; i >= 0; i--) {
+            sb.append(s.charAt(i));
+        }
+        return sb.toString();
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter The First String: ");
@@ -52,5 +60,9 @@ public class OneFebruary {
         } else {
             System.out.println("The Strings is not a palindrome");
         }
+        System.out.print("Enter The String: ");
+        String s2 = sc.next();
+        String res = reverseString(s2);
+        System.out.println(res);
     }
 }
