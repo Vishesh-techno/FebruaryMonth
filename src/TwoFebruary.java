@@ -1,3 +1,7 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 class Node {
     int data;
     Node next;
@@ -84,6 +88,32 @@ class Node {
 
 public class TwoFebruary {
 
+    public static List<Integer> commonElements(List<Integer> arr1, List<Integer> arr2, List<Integer> arr3) {
+        List<Integer> res = new ArrayList<>();
+        int i = 0, j = 0, k = 0;
+        int n1 = arr1.size(), n2 = arr2.size(), n3 = arr3.size();
+        while (i < n1 && j < n2 && k < n3) {
+            int a = arr1.get(i);
+            int b = arr2.get(j);
+            int c = arr3.get(k);
+
+            if (a == b && b == c) {
+                res.add(a);
+                int val = a;
+                while (i < n1 && val == arr1.get(i)) i++;
+                while (j < n2 && val == arr2.get(j)) j++;
+                while (k < n3 && val == arr3.get(k)) k++;
+            } else if (a < b) {
+                i++;
+            } else if (b < c) {
+                j++;
+            } else {
+                k++;
+            }
+        }
+        return res;
+    }
+
     public static void main(String[] args) {
         for (int i = 0; i < 7; i++) {
             Node.addNode(i);
@@ -96,5 +126,10 @@ public class TwoFebruary {
         System.out.println(res);
         Node.head = Node.removeNthFromEnd(Node.head, 3);
         Node.print();
+        List<Integer> a = Arrays.asList(1, 5, 10, 20, 40, 80);
+        List<Integer> b = Arrays.asList(6, 7, 20, 80, 100);
+        List<Integer> c = Arrays.asList(3, 4, 15, 20, 30, 70, 80, 120);
+
+        System.out.println(commonElements(a, b, c));
     }
 }
