@@ -68,7 +68,7 @@ public class ThreeFebruary {
         for (int i : arr) {
             set.add(i);
         }
-        ArrayList<Integer> res = new ArrayList<Integer>(set);
+        ArrayList<Integer> res = new ArrayList<>(set);
         Collections.sort(res);
         return res;
     }
