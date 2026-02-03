@@ -1,4 +1,6 @@
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class ThreeFebruary {
@@ -25,6 +27,27 @@ public class ThreeFebruary {
         }
     }
 
+    public static boolean hasTripletSum(int[] arr, int target) {
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int i : arr) {
+            map.put(i, map.getOrDefault(i, 0) + 1);
+        }
+        for (int i = 0; i < arr.length - 1; i++) {
+            map.put(arr[i], map.get(arr[i]) - 1);
+            for (int j = i + 1; j < arr.length; j++) {
+                map.put(arr[j], map.get(arr[j]) - 1);
+                int twoSum = arr[i] + arr[j];
+                int required = target - twoSum;
+                if (map.getOrDefault(required, 0) > 0) {
+                    return true;
+                }
+                map.put(arr[j], map.get(arr[j]) + 1);
+            }
+            map.put(arr[i], map.get(arr[i]) + 1);
+        }
+        return false;
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter the size of Array: ");
@@ -39,6 +62,6 @@ public class ThreeFebruary {
         reverseInGroups(nums, k);
         System.out.println("Reverse in group Operation is performed and the final Array is:");
         System.out.println(Arrays.toString(nums));
-
+        System.out.println(hasTripletSum(nums, k));
     }
 }
