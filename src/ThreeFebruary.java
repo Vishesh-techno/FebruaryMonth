@@ -48,6 +48,24 @@ public class ThreeFebruary {
         return false;
     }
 
+    public static boolean hasTripletSumII(int[] arr, int target) {
+        Arrays.sort(arr);
+        int n = arr.length;
+        for (int i = 0; i < n - 2; i++) {
+            int start = i + 1, end = n - 1;
+            while (start < end) {
+                int sum = arr[start] + arr[end] + arr[i];
+                if (sum == target) return true;
+                else if (sum < target) {
+                    start++;
+                } else {
+                    end--;
+                }
+            }
+        }
+        return false;
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter the size of Array: ");
@@ -63,5 +81,6 @@ public class ThreeFebruary {
         System.out.println("Reverse in group Operation is performed and the final Array is:");
         System.out.println(Arrays.toString(nums));
         System.out.println(hasTripletSum(nums, k));
+        System.out.println(hasTripletSumII(nums, k));
     }
 }
