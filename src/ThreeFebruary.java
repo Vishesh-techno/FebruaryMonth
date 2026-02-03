@@ -1,7 +1,4 @@
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class ThreeFebruary {
     public static void reverseInGroups(int[] nums, int k) {
@@ -66,6 +63,28 @@ public class ThreeFebruary {
         return false;
     }
 
+    public static ArrayList<Integer> removeDuplicates(int[] arr) {
+        Set<Integer> set = new HashSet<>();
+        for (int i : arr) {
+            set.add(i);
+        }
+        ArrayList<Integer> res = new ArrayList<Integer>(set);
+        Collections.sort(res);
+        return res;
+    }
+
+    public static ArrayList<Integer> removeDuplicatesII(int[] arr) {
+        ArrayList<Integer> res = new ArrayList<>();
+        if (arr.length == 0) return res;
+        res.add(arr[0]);
+        for (int i = 1; i < arr.length; i++) {
+            if (arr[i] != arr[i - 1]) {
+                res.add(arr[i]);
+            }
+        }
+        return res;
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter the size of Array: ");
@@ -82,5 +101,7 @@ public class ThreeFebruary {
         System.out.println(Arrays.toString(nums));
         System.out.println(hasTripletSum(nums, k));
         System.out.println(hasTripletSumII(nums, k));
+        System.out.println(removeDuplicates(nums));
+        System.out.println(removeDuplicatesII(nums));
     }
 }
