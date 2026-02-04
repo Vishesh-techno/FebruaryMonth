@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -87,6 +88,36 @@ public class FourFebruary {
         return -1;
     }
 
+    public static ArrayList<Integer> findOcc(int[] arr, int x) {
+        ArrayList<Integer> res = new ArrayList<>();
+        int left = find(arr, x, true);
+        int right = find(arr, x, false);
+        res.add(left);
+        res.add(right);
+        return res;
+    }
+
+    public static int find(int[] arr, int x, boolean isLeft) {
+        int start = 0, end = arr.length - 1;
+        int ans = -1;
+        while (start <= end) {
+            int mid = start + (end - start) / 2;
+            if (arr[mid] == x) {
+                ans = mid;
+                if (isLeft) {
+                    end = mid - 1;
+                } else {
+                    start = mid + 1;
+                }
+            } else if (arr[mid] < x) {
+                start = mid + 1;
+            } else {
+                end = mid - 1;
+            }
+        }
+        return ans;
+    }
+
     public static void main(String[] args) {
         int[] arr = {10, 20, 30, 40, 50};
         System.out.println(findTriplets(arr));
@@ -100,5 +131,7 @@ public class FourFebruary {
         System.out.println(Arrays.toString(b));
         int[] nums = {1, 5, 3, 4, 3, 5, 6};
         System.out.println(firstRepeated(nums));
+        int[] nums1 = {1, 3, 5, 5, 5, 5, 67, 123, 125};
+        System.out.println(findOcc(nums1, 5));
     }
 }
