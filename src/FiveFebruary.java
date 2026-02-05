@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class FiveFebruary {
     public static int[] productExceptSelf(int[] arr) {
         int[] product = new int[arr.length];
@@ -17,7 +19,34 @@ public class FiveFebruary {
         return product;
     }
 
+    public static void reArrangeArray(int[] nums) {
+        int n = nums.length;
+        int[] res = new int[n];
+        int left = 0, right = n - 1;
+        int idx = 0;
+        while (left <= right) {
+            if (idx < n) res[idx++] = nums[right--];
+            if (idx < n) res[idx++] = nums[left++];
+        }
+        for (int i = 0; i < n; i++) {
+            nums[i] = res[i];
+        }
+    }
 
+    public static int[] reArrangeArrayWithNegative(int[] nums) {
+        int[] res = new int[nums.length];
+        int pos = 0, neg = 1;
+        for (int i : nums) {
+            if (i > 0) {
+                res[pos] = i;
+                pos += 2;
+            } else {
+                res[neg] = i;
+                neg += 2;
+            }
+        }
+        return res;
+    }
 
     public static void main(String[] args) {
         int[] nums = {34, 8, 10, 3, 2, 80, 30, 33, 1};
@@ -25,5 +54,12 @@ public class FiveFebruary {
         for (int re : res) {
             System.out.print(re + " ");
         }
+        System.out.println();
+        int[] arr = {10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110};
+        reArrangeArray(arr);
+        System.out.println(Arrays.toString(arr));
+
+        int[] array = {3, 1, -2, -5, 2, -4};
+        System.out.println(Arrays.toString(reArrangeArrayWithNegative(array)));
     }
 }
