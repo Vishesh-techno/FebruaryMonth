@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class FiveFebruary {
@@ -48,6 +49,27 @@ public class FiveFebruary {
         return res;
     }
 
+    public static void reArrangeII(ArrayList<Integer> nums) {
+        int n = nums.size();
+        ArrayList<Integer> res = new ArrayList<>(n);
+
+        for (int i = 0; i < n; i++) res.add(0);
+
+        int pos = 0, neg = 1;
+        for (int i : nums) {
+            if (i > 0) {
+                res.set(pos, i);
+                pos += 2;
+            } else {
+                res.set(neg, i);
+                neg += 2;
+            }
+        }
+        for (int i = 0; i < res.size(); i++) {
+            nums.set(i, res.get(i));
+        }
+    }
+
     public static void main(String[] args) {
         int[] nums = {34, 8, 10, 3, 2, 80, 30, 33, 1};
         int[] res = productExceptSelf(nums);
@@ -61,5 +83,13 @@ public class FiveFebruary {
 
         int[] array = {3, 1, -2, -5, 2, -4};
         System.out.println(Arrays.toString(reArrangeArrayWithNegative(array)));
+
+        ArrayList<Integer> list = new ArrayList<>();
+        for (int x : array) {
+            list.add(x);
+        }
+        reArrangeII(list);
+        System.out.println(list);
+
     }
 }
