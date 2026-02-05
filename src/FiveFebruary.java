@@ -53,7 +53,9 @@ public class FiveFebruary {
         int n = nums.size();
         ArrayList<Integer> res = new ArrayList<>(n);
 
-        for (int i = 0; i < n; i++) res.add(0);
+        for (int i = 0; i < n; i++) {
+            res.add(0);
+        }
 
         int pos = 0, neg = 1;
         for (int i : nums) {
