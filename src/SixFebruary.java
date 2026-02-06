@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class SixFebruary {
@@ -52,9 +54,37 @@ public class SixFebruary {
         return maxLen;
     }
 
+    public static ArrayList<ArrayList<Integer>> getPairs(int[] arr) {
+        Arrays.sort(arr);
+        ArrayList<ArrayList<Integer>> res = new ArrayList<>();
+        int left = 0, right = arr.length - 1;
+        while (left < right) {
+            int sum = arr[left] + arr[right];
+            if (sum == 0) {
+                ArrayList<Integer> pair = new ArrayList<>();
+                pair.add(arr[left]);
+                pair.add(arr[right]);
+                res.add(pair);
+
+                int lVal = arr[left];
+                int rVal = arr[right];
+
+                while (left < right && arr[left] == lVal) left++;
+                while (left < right && arr[right] == rVal) right--;
+            } else if (sum > 0) {
+                right--;
+            } else {
+                left++;
+            }
+        }
+        return res;
+    }
+
     public static void main(String[] args) {
         int[] arr = {10, 5, 2, 7, 1, 10};
         System.out.println(longestSubArray(arr, 15));
         System.out.println(longestSubArrayBetter(arr, 15));
+        int[] nums = {-1, 0, 1, 2, -1, -4};
+        System.out.println(getPairs(nums));
     }
 }
