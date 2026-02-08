@@ -22,8 +22,28 @@ public class EightFebruary {
         return res;
     }
 
+    public static List<Integer> countSmaller(int[] nums) {
+        List<Integer> res = new ArrayList<>();
+        List<Integer> sorted = new ArrayList<>();
+
+        for (int i = nums.length - 1; i >= 0; i--) {
+            int pos = 0;
+
+            while (pos < sorted.size() && sorted.get(pos) < nums[i]) {
+                pos++;
+            }
+
+            res.add(pos);
+            sorted.add(pos, nums[i]);
+        }
+
+        Collections.reverse(res);
+        return res;
+    }
+
     public static void main(String[] args) {
         int[] nums = {4, 8, 5, 2, 25};
         System.out.println(nextSmallerEle(nums));
+        System.out.println(countSmaller(nums));
     }
 }
