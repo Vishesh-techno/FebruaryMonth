@@ -18,7 +18,21 @@ public class NineFebruary {
         return stk.isEmpty();
     }
 
+    public static String reverseWords(String s) { //Reverse String with no extra dots
+        String[] words = s.split("\\.");
+        StringBuilder res = new StringBuilder();
+        for (int i = words.length - 1; i >= 0; i--) {
+            if (words[i].isEmpty()) continue;
+            if (res.length() > 0) {
+                res.append(".");
+            }
+            res.append(words[i]);
+        }
+        return res.toString();
+    }
+
     public static void main(String[] args) {
         System.out.println(validParenthesis("{{{}}}{([])}"));
+        System.out.println(reverseWords("..geeks..for.geeks."));
     }
 }
