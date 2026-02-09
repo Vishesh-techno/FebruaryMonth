@@ -1,4 +1,4 @@
-import java.util.Stack;
+import java.util.*;
 
 public class NineFebruary {
     public static boolean validParenthesis(String s) {
@@ -23,7 +23,7 @@ public class NineFebruary {
         StringBuilder res = new StringBuilder();
         for (int i = words.length - 1; i >= 0; i--) {
             if (words[i].isEmpty()) continue;
-            if (res.length() > 0) {
+            if (!res.isEmpty()) {
                 res.append(".");
             }
             res.append(words[i]);
@@ -31,8 +31,39 @@ public class NineFebruary {
         return res.toString();
     }
 
+    public static boolean areStringRotated(String s1, String s2) {
+        return (s1 + s1).contains(s2);
+    }
+
+    public static char firstRepeatingChar(String s) {
+        Set<Character> set = new HashSet<>();
+        for (char c : s.toCharArray()) {
+            if (set.contains(c)) {
+                return c;
+            }
+            set.add(c);
+        }
+        return '$';
+    }
+
+    public static char nonRepeatingChar(String s) {
+        Map<Character, Integer> map = new HashMap<>();
+        for (char c : s.toCharArray()) {
+            map.put(c, map.getOrDefault(c, 0) + 1);
+        }
+        for (char c : s.toCharArray()) {
+            if (map.get(c) == 1) {
+                return c;
+            }
+        }
+        return '$';
+    }
+
     public static void main(String[] args) {
         System.out.println(validParenthesis("{{{}}}{([])}"));
         System.out.println(reverseWords("..geeks..for.geeks."));
+        System.out.println(areStringRotated("abcd", "cdab"));
+        System.out.println(nonRepeatingChar("geeksforgeeks"));
+        System.out.println(firstRepeatingChar("Leetcode"));
     }
 }
