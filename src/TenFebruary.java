@@ -89,6 +89,8 @@ public class TenFebruary {
 
     public static void main(String[] args) {
         System.out.println(isIPAddressValid("222.111.111.111"));
+        System.out.println(validIpAddress("2001:0db8:85a3:0:0:8A2E:0370:7334"));
+        System.out.println(validIpAddress("256.256.256.256"));
 
     }
 }
